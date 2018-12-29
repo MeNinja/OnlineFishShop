@@ -11,6 +11,10 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -46,31 +50,15 @@
 
                     @if (User.IsInRole("Admin"))
                     {
-                        @*                         <li> *@
-                        @*                             <a asp-area="Admin" asp-controller="Storehouse" asp-action="Index">Storehouse</a> *@
-                        @*                         </li> *@
-
                         <li>
                             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-button">@OnlineFishShopResources.lblAdminPanel</a>
-                            @*<ul class="sub-menu">
-                                <li>
-                                    <a asp-area="Admin" asp-controller="Categories" asp-action="Index">Manage Categories</a>
-                                </li>
-                                <li>
-                                    <a asp-area="Products" asp-controller="Home" asp-action="Index">Manage Products</a>
-                                </li>
-                                <li>
-                                    <a asp-area="Admin" asp-controller="Users" asp-action="Index">Manage Users</a>
-                                </li>*@
-                            @* <li> *@
-                            @*     <a asp-area="Admin" asp-controller="DistributorShipments" asp-action="Index">Manage distributor shipments</a> *@
-                            @* </li> *@
-                            @*</ul>*@
                         </li>
                     }
-
+                    
+                    <li class="nav-button">
+                        @await Component.InvokeAsync("NavbarShoppingCart")
+                    </li>
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -96,7 +84,6 @@
                 </div>
             </div>
         </div>
-
     </footer>
 
 

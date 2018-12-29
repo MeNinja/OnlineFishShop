@@ -11,14 +11,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using OnlineFishShop.Data;
 using OnlineFishShop.Data.Import.Helpers;
 using OnlineFishShop.Data.Models;
 using OnlineFishShop.Services;
 using OnlineFishShop.Services.Contracts;
 using OnlineFishShop.Web.Infrastructure.Extensions.Helpers.Secrets;
-using OnlineFishShop.Web.WebServices;
+using OnlineFishShop.Web.Infrastructure.WebServices;
+using OnlineFishShop.Web.Models.Automapper;
 
 namespace OnlineFishShop.Web
 {
@@ -86,7 +86,8 @@ namespace OnlineFishShop.Web
 //            services.AddTransient<IHtmlSanitizer, HtmlSanitizer>();
 //            services.AddTransient<IHtmlService, HtmlService>();
 
-//            services.AddSingleton<IShoppingCartManager, ShoppingCartManager>();
+            //Add other services.
+            services.AddSingleton<IShoppingCartManager, ShoppingCartManager>();
 
             services.AddSession();
 
@@ -106,6 +107,14 @@ namespace OnlineFishShop.Web
                 facebookOptions.AppId = this.Configuration.GetSection("AppKeys")["FacebookAppId"];
                 facebookOptions.AppSecret = this.Configuration.GetSection("AppKeys")["FacebookAppSecret"];
             });
+
+//            var config = new AutoMapper.MapperConfiguration(cfg =>
+//            {
+//                cfg.AddProfile(new AutoMapperProfile());
+//            });
+//
+//            IMapper mapper = config.CreateMapper();
+//            services.AddSingleton(mapper);
 
             services.AddAutoMapper();
 
@@ -136,6 +145,8 @@ namespace OnlineFishShop.Web
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

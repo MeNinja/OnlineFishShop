@@ -39,10 +39,8 @@
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Areas\Products\Data\" />
     <Folder Include="Areas\Products\Models\" />
-    <Folder Include="Areas\Shopping\Controllers\" />
     <Folder Include="Areas\Shopping\Data\" />
-    <Folder Include="Areas\Shopping\Models\" />
-    <Folder Include="Areas\Shopping\Views\" />
+    <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 
   <ItemGroup>

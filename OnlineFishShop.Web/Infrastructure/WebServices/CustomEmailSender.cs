@@ -1,9 +1,7 @@
-﻿using System.Net;
-using System.Net.Mail;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
-namespace OnlineFishShop.Web.WebServices
+namespace OnlineFishShop.Web.Infrastructure.WebServices
 {
     public class CustomEmailSender : IEmailSender
     {
