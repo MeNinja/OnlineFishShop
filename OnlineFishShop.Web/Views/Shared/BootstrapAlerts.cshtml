@@ -1,0 +1,28 @@
+﻿@using System.Globalization
+@using OnlineFishShop.Web.Infrastructure.Extensions.Helpers
+@using OnlineFishShop.Web.Infrastructure.Extensions.Helpers.Html
+
+@{
+    var alerts = TempData.ContainsKey(Alert.TempDataKey)
+        ? TempData.Get<List<Alert>>(Alert.TempDataKey)
+        : new List<Alert>();
+
+    if (alerts.Any())
+    {
+        <hr />
+    }
+
+    foreach (var alert in alerts)
+    {
+        var dismissableClass = alert.Dismissable ? "alert-dismissable" : null;
+
+        <div class="alert alert-@alert.AlertStyle @dismissableClass">
+            @if (alert.Dismissable)
+            {
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            }
+
+            <strong>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(@alert.AlertStyle)!</strong> @alert.Message
+        </div>
+    }
+}
