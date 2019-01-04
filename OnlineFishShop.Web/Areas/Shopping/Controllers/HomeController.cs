@@ -58,7 +58,10 @@ namespace OnlineFishShop.Web.Areas.Shopping.Controllers
             var dbProduct = await this.products.GetSingleOrDefaultAsync(p => p.Id == productId);
 
             if (dbProduct.Stock <= 0 || quantity > dbProduct.Stock)
+            {
+                Danger(string.Format(CommonConstants.StockAmountExceededForError, dbProduct.Name));
                 return BadRequest(string.Format(CommonConstants.StockAmountExceededForError, dbProduct.Name));
+            }
 
             var cartItem = this.shoppingCartManager.GetCartItem(shoppingCartId, productId);
 
@@ -66,12 +69,14 @@ namespace OnlineFishShop.Web.Areas.Shopping.Controllers
             {
                 this.shoppingCartManager.AddToCart(shoppingCartId, productId, quantity);
 
+                Success(CommonConstants.SuccessfullyAddedCartItem, true);
                 return Ok(CommonConstants.SuccessfullyAddedCartItem);
             }
 
             //check if can add this quantity to the current quantity without exceeding the db stock
             if (cartItem.Quantity + quantity > dbProduct.Stock)
             {
+                Danger(CommonConstants.AddingAmountWillExceedOurStock);
                 return BadRequest(CommonConstants.AddingAmountWillExceedOurStock);
             }
             else
@@ -79,6 +84,7 @@ namespace OnlineFishShop.Web.Areas.Shopping.Controllers
                 cartItem.Quantity += quantity;
             }
 
+            Success(CommonConstants.SuccessfullyAddedCartItem, true);
             return Ok(CommonConstants.SuccessfullyAddedMoreOfThisItem);
         }
 
