@@ -7,7 +7,7 @@ using OnlineFishShop.Data.Models;
 using OnlineFishShop.Services;
 using Xunit;
 
-namespace OnlineFishShop.Tests.ProductsGDSTests
+namespace OnlineFishShop.Tests.Services
 {
     public class Add
     {
