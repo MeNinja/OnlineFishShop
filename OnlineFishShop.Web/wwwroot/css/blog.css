@@ -1,0 +1,25 @@
+﻿body {
+    background-color: lightgray;
+}
+
+.blog-post {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 50%;
+    height: 150px;
+    overflow: auto;
+    margin: auto;
+    margin-bottom: 20px;
+    display: block;
+    border: dashed black;
+}
+
+.blog-comment {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 50%;
+    height: 150px;
+    overflow: auto;
+    margin: auto;
+    margin-bottom: 20px;
+    display: block;
+    border: solid black;
+}

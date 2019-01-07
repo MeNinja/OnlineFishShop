@@ -1,0 +1,17 @@
+﻿@model OnlineFishShop.Data.Models.BlogComment
+
+<link rel="stylesheet" href="~/css/blog.css" />
+
+@{
+    ViewData["Title"] = "Comment";
+}
+
+<form asp-controller="Home" asp-action="AddComment">
+    <input asp-for="BlogPostId" hidden/>
+    <input asp-for="UserId" hidden/>
+    <label asp-for="Message"></label>
+    <br/>
+    <textarea asp-for="Message" placeholder="Write your comment..."></textarea>
+    <br/>
+    <button>Submit</button>
+</form>

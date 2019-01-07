@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace OnlineFishShop.Data.Models
 {
@@ -9,6 +7,10 @@ namespace OnlineFishShop.Data.Models
     {
         [Key]
         public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public string Content { get; set; }
 
         public virtual ICollection<BlogComment> Comments { get; set; }
     }

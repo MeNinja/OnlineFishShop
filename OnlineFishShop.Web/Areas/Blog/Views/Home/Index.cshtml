@@ -1,0 +1,33 @@
+﻿@using OnlineFishShop.Common.Resources
+@model IEnumerable<OnlineFishShop.Data.Models.BlogPost>
+
+<link rel="stylesheet" href="~/css/blog.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+@{
+    ViewData["Title"] = OnlineFishShopResources.lblBlog;
+}
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="blog-post">
+        <p>@item.Title</p>
+        <hr />
+        <p>@item.Content</p>
+        <hr />
+        <a asp-area="Blog" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">View</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-area="Blog" asp-controller="Home" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+            <a asp-area="Blog" asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        }
+        </div>
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <a asp-area="Blog" asp-controller="Home" asp-action="Create">Create new blog post</a>
+}
+            

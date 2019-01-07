@@ -1,0 +1,41 @@
+﻿@using System.Security.Claims
+@using OnlineFishShop.Common.Resources
+@model OnlineFishShop.Data.Models.BlogPost
+
+<link rel="stylesheet" href="~/css/blog.css" />
+
+@{
+    ViewData["Title"] = OnlineFishShopResources.lblBlog;
+}
+
+<div class="blog-post">
+    <p>@Model.Title</p>
+    <hr/>
+    <p>@Model.Content</p>
+</div>
+
+<h1>Comments</h1>
+<hr/>
+@foreach(var item in Model.Comments)
+{ 
+<div class="blog-comment">
+    <p>Comment by - @item.User.UserName</p>
+    <p>@item.Message</p>
+    @if (item.IsEdited)
+    {
+        <p>Last date edited - @item.DateEdited.ToString()</p>
+    }
+    @if (User.FindFirstValue(ClaimTypes.NameIdentifier) == item.UserId)
+    {
+        <a asp-area="Blog" asp-controller="Home" asp-action="EditComment" asp-route-id="@item.Id">Edit</a>
+        <a asp-area="Blog" asp-controller="Home" asp-action="DeleteComment" asp-route-commentId="@item.Id" asp-route-blogId="@Model.Id">Delete</a>
+    }
+
+</div>
+}
+<hr/>
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-area="Blog" asp-controller="Home" asp-action="AddComment" asp-route-blogId="@Model.Id">Write a new comment</a>
+
+}
